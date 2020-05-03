@@ -1,7 +1,7 @@
 $breakpoints: (
-  'sm': 'screen and (min-width: 300px)',
+  'sm': 'screen and (min-width: 500px)',
   'md': 'screen and (min-width: 768px)',
-  'lg': 'screen and (min-width: 1000px)',
+  'lg': 'screen and (min-width: 992px)',
   'xl': 'screen and (min-width: 1200px)',
 ) !default;
 
@@ -12,15 +12,15 @@ $breakpoints: (
 }
 
 span#judge:after{
-  content: "unknowon";
+  content: "extra small";
   @include mq(sm) {
-    content: "small (min-width:300px)";
+    content: "small (min-width:500px)";
   }
   @include mq(md) {
     content: "medium (min-width:768px)";
   }
   @include mq(lg) {
-    content: "large (min-width: 1000px)";
+    content: "large (min-width: 992px)";
   }
   @include mq(xl) {
     content: "extra large (min-width: 1200px)";
@@ -28,19 +28,20 @@ span#judge:after{
 }
 
 div#jxgbox {
+  // extra small
   width: 200px;
   height: 200px;
   @include mq(sm) {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
   @include mq(md) {
-    width: 400px;
-    height: 400px;
-   }
-  @include mq(lg) {
     width: 500px;
     height: 500px;
+   }
+  @include mq(lg) {
+    width: 600px;
+    height: 600px;
   }
   @include mq(xl) {
     width: 800px;

@@ -1,10 +1,10 @@
 span#judge:after {
-  content: "unknowon";
+  content: "extra small";
 }
 
-@media screen and (min-width: 300px) {
+@media screen and (min-width: 500px) {
   span#judge:after {
-    content: "small (min-width:300px)";
+    content: "small (min-width:500px)";
   }
 }
 
@@ -14,9 +14,9 @@ span#judge:after {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 992px) {
   span#judge:after {
-    content: "large (min-width: 1000px)";
+    content: "large (min-width: 992px)";
   }
 }
 
@@ -31,24 +31,24 @@ div#jxgbox {
   height: 200px;
 }
 
-@media screen and (min-width: 300px) {
+@media screen and (min-width: 500px) {
   div#jxgbox {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
 }
 
 @media screen and (min-width: 768px) {
   div#jxgbox {
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 992px) {
   div#jxgbox {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
   }
 }
 
