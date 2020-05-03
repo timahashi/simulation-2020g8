@@ -1,0 +1,49 @@
+$breakpoints: (
+  'sm': 'screen and (min-width: 300px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 1000px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+span#judge:after{
+  content: "unknowon";
+  @include mq(sm) {
+    content: "small (min-width:300px)";
+  }
+  @include mq(md) {
+    content: "medium (min-width:768px)";
+  }
+  @include mq(lg) {
+    content: "large (min-width: 1000px)";
+  }
+  @include mq(xl) {
+    content: "extra large (min-width: 1200px)";
+  }
+}
+
+div#jxgbox {
+  width: 200px;
+  height: 200px;
+  @include mq(sm) {
+    width: 300px;
+    height: 300px;
+  }
+  @include mq(md) {
+    width: 400px;
+    height: 400px;
+   }
+  @include mq(lg) {
+    width: 500px;
+    height: 500px;
+  }
+  @include mq(xl) {
+    width: 800px;
+    height: 800px;
+  }
+}

@@ -1,0 +1,61 @@
+span#judge:after {
+  content: "unknowon";
+}
+
+@media screen and (min-width: 300px) {
+  span#judge:after {
+    content: "small (min-width:300px)";
+  }
+}
+
+@media screen and (min-width: 768px) {
+  span#judge:after {
+    content: "medium (min-width:768px)";
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  span#judge:after {
+    content: "large (min-width: 1000px)";
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  span#judge:after {
+    content: "extra large (min-width: 1200px)";
+  }
+}
+
+div#jxgbox {
+  width: 200px;
+  height: 200px;
+}
+
+@media screen and (min-width: 300px) {
+  div#jxgbox {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  div#jxgbox {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  div#jxgbox {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  div#jxgbox {
+    width: 800px;
+    height: 800px;
+  }
+}
+/*# sourceMappingURL=linfunc1.css.map */
