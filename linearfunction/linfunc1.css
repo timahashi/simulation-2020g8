@@ -26,9 +26,45 @@ span#judge:after {
   }
 }
 
+div#flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: auto;
+}
+
+@media screen and (min-width: 500px) {
+  div#flex {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
 div#jxgbox {
-  width: 200px;
-  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 250px;
+  height: 250px;
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 @media screen and (min-width: 500px) {
@@ -40,22 +76,38 @@ div#jxgbox {
 
 @media screen and (min-width: 768px) {
   div#jxgbox {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
   }
 }
 
 @media screen and (min-width: 992px) {
   div#jxgbox {
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   div#jxgbox {
-    width: 800px;
-    height: 800px;
+    width: 700px;
+    height: 700px;
   }
+}
+
+div#value {
+  width: 100%;
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 500px) {
+  div#value {
+    margin-left: 20px;
+    margin-top: 0px;
+  }
+}
+
+div.slider {
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=linfunc1.css.map */

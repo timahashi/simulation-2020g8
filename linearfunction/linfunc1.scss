@@ -27,24 +27,58 @@ span#judge:after{
   }
 }
 
+// p {
+//   margin-left:10px;
+//   margin-right:10px;
+//   width: calc( 100% - 20px );
+// }
+
+div#flex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  width: auto;
+  @include mq(sm) {
+    flex-direction: row;
+  }
+}
+
 div#jxgbox {
   // extra small
-  width: 200px;
-  height: 200px;
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: 250px;
+  flex-basis: auto;
+  flex-shrink: 0;
   @include mq(sm) {
     width: 250px;
     height: 250px;
   }
   @include mq(md) {
+    width: 400px;
+    height: 400px;
+  }
+  @include mq(lg) {
     width: 500px;
     height: 500px;
-   }
-  @include mq(lg) {
-    width: 600px;
-    height: 600px;
   }
   @include mq(xl) {
-    width: 800px;
-    height: 800px;
+    width: 700px;
+    height: 700px;
   }
+}
+
+div#value {
+  width: 100%;
+  margin-top: 15px;
+  @include mq(sm) {
+    margin-left: 20px;
+    margin-top: 0px;
+  }
+}
+
+div.slider {
+  margin-bottom: 10px;
 }
