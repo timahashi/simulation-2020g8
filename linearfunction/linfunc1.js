@@ -104,5 +104,4 @@ var updatevisiblemain = function () {
 }
 
 var updatefunctionhook = function () {
-  console.log(app.func1,app.func2);
 }
