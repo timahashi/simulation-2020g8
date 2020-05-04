@@ -58,7 +58,7 @@ let app = new Vue({
     func2a: -2,
     func2b: 2,
     func1: true,
-    func2: true,
+    func2: false,
     errorMsg: '',
   },
   computed: {
@@ -121,15 +121,14 @@ let app = new Vue({
     }
 
     updatefunctionhook = function () {
-      // f1.needsUpdate = true;
-      // f2.needsUpdate = true;
-      // f1.update().updateRenderer();
-      // f2.update().updateRenderer();
-      brd.update()
+      f1.needsUpdate = true;
+      f2.needsUpdate = true;
+      f1.update().updateRenderer();
+      f2.update().updateRenderer();
+      // brd.update()
     }
   }
 });
-   
 
-
-
+updatevisible();
+brd.update();
