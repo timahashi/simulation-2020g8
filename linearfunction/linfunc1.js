@@ -58,7 +58,7 @@ let app = new Vue({
     func2a: -2,
     func2b: 2,
     func1: true,
-    func2: true,
+    func2: false,
     errorMsg: '',
   },
   computed: {
@@ -129,7 +129,6 @@ let app = new Vue({
     }
   }
 });
-   
 
-
-
+updatevisible();
+brd.update();
