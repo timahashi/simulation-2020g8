@@ -8,15 +8,15 @@ https://opensource.org/licenses/mit-license.php
 <html>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.7/jsxgraph.css" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.7/jsxgraphcore.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-slider-component@latest/theme/default.css" />
   <script src="https://cdn.jsdelivr.net/npm/vue-slider-component@latest/dist/vue-slider-component.umd.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./linfunc1.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </html>
 <body>
-  <p><span id="judge">判定:</span></p>
-
   <div id="flex">
     <div id="jxgbox" class="jxgbox"></div>
     <script>
@@ -25,18 +25,20 @@ https://opensource.org/licenses/mit-license.php
       });
       var updatefunctionhook = function () {};
       var updatefunction = function () {
-        brd.update();
         updatefunctionhook();
       };
     </script>
     <div id="value">
       <div id="app">
-        <div class="slider">
+        <!-- <div class="slider" style="height:50px;">
+          <span style="color: red; margin-left=20px;">{{ errorMsg }}</span>
+        </div> -->
+        <div class="slider" style="margin-bottom:0px;">
           <input type="checkbox" v-model="func1">
-          1次関数その1（青） {{ getfunc1equation }}
+          1次関数1（青） {{ getfunc1equation }}
         </div>
         <div class="slider">
-          傾き a={{func1a}}<br>
+          傾き a=<input class="ab" v-model="func1a" @input="clearErrorMsg" /><br>
           <vue-slider
             ref="slider"
             v-model="func1a"
@@ -44,11 +46,13 @@ https://opensource.org/licenses/mit-license.php
             :max="10"
             :interval="0.1"
             style="display: inline-block; width: 100%;"
+            @error="error"
+            @change="clearErrorMsg"
             :disabled="!func1"
           ></vue-slider>
         </div>
         <div class="slider">
-          切片 b={{func1b}}<br>
+          切片 b=<input class="ab" v-model="func1b" @input="clearErrorMsg" /><br>
           <vue-slider
             ref="slider"
             v-model="func1b"
@@ -56,28 +60,34 @@ https://opensource.org/licenses/mit-license.php
             :max="10"
             :interval="0.1"
             style="display: inline-block; width: 100%;"
+            @error="error"
+            @change="clearErrorMsg"
             :disabled="!func1"
           ></vue-slider>
         </div>
 
-        <div class="slider">
+        <div class="slider" style="margin-bottom:0px;">
           <input type="checkbox" v-model="func2">
-          1次関数その2（赤） {{ getfunc2equation }}
+          1次関数2（赤） {{ getfunc2equation }}
         </div>
         <div class="slider">
-          傾き a={{func2a}}<br>
+          傾き a=<input class="ab" v-model="func2a" @input="clearErrorMsg" /><br>
           <vue-slider
             ref="slider"
             v-model="func2a"
             :min="-10" 
             :max="10"
             :interval="0.1"
-            style="display: inline-block; width: 100%;"
+            style="display: inline-block; width: 100%; color: red;"
+            :process-style="{ backgroundColor: 'red' }"
+            :tooltip-style="{ backgroundColor: 'red', borderColor: 'red' }"
+            @error="error"
+            @change="clearErrorMsg"
             :disabled="!func2"
           ></vue-slider>
         </div>
         <div class="slider">
-          切片 b={{func2b}}<br>
+          切片 b=<input class="ab" v-model="func2b" @input="clearErrorMsg" /><br>
           <vue-slider
             ref="slider"
             v-model="func2b"
@@ -85,6 +95,10 @@ https://opensource.org/licenses/mit-license.php
             :max="10"
             :interval="0.1"
             style="display: inline-block; width: 100%;"
+            :process-style="{ backgroundColor: 'red' }"
+            :tooltip-style="{ backgroundColor: 'red', borderColor: 'red' }"
+            @error="error"
+            @change="clearErrorMsg"
             :disabled="!func2"
           ></vue-slider>
         </div>

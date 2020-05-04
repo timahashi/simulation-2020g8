@@ -26,6 +26,12 @@ span#judge:after {
   }
 }
 
+body {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 div#flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -98,16 +104,23 @@ div#jxgbox {
 div#value {
   width: 100%;
   margin-top: 15px;
+  margin-left: 0px;
 }
 
 @media screen and (min-width: 500px) {
   div#value {
-    margin-left: 20px;
     margin-top: 0px;
+    margin-left: 20px;
   }
 }
 
 div.slider {
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 10px;
+}
+
+input.ab {
+  width: 50px;
 }
 /*# sourceMappingURL=linfunc1.css.map */
