@@ -65,8 +65,6 @@ let app = new Vue({
     func1: true,
     func2: false,
     errorMsg: '',
-    timeron: false,
-    timerobj: null,
     dira: 0,
     dirb: 0,
     anima: 0,
@@ -128,45 +126,38 @@ let app = new Vue({
       return [v,di,animf];
     },
     timercount: function () {
+      let self=this
       if (this.anima != 0) {
+        if (this.dira == 0) {
+          this.dira = 1
+        }
         l = this.timermain(this.func1a, this.dira, this.anima);
-        console.log(l)
         this.func1a = l[0];
         this.dira = l[1];
+      } else {
+          this.dira = 0
       }
       if (this.animb != 0) {
+        if (this.dirb == 0) {
+          this.dirb = 1
+        }
         l = this.timermain(this.func1b, this.dirb, this.animb);
         this.func1b = l[0];
         this.dirb = l[1];
+      } else {
+          this.dirb = 0
+      }
+      if ((this.anima != 0) || (this.animb != 0)) {
+        setTimeout(self.timercount, this.interval);
       }
     },
     animcontrolhook: function () {
       let self=this
-      if ((this.anima == 0) && (this.animb == 0)) {
-        if (this.timeron) {
-          clearInterval(this.timerobj)
-        }
-        this.timerobj = null
-        this.timeron = false
-        this.dira = 0
-        this.dirb = 0        
+      if ((this.anima != 0) || (this.animb != 0)) {
+        setTimeout(self.timercount, this.interval)
       } else {
-        if (this.anima != 0) {
-          if (this.dira == 0) {
-            this.dira = 1
-          }
-        } else {
-            this.dira = 0
-        }
-        if (this.animb != 0) {
-          if (this.dirb == 0) {
-            this.dirb = 1
-          }
-        } else {
-            this.dirb = 0
-        }
-        this.timerobj = setInterval(function() {self.timercount()}, this.interval)
-        this.timeron = true
+        this.dira = 0
+        this.dirb = 0
       }
     },
     modifyinterval: function () {
@@ -174,7 +165,6 @@ let app = new Vue({
         self=this
         clearInterval(this.timerobj)
         this.timerobj = setInterval(function() {self.timercount()}, this.interval)
-        console.log("interval ",this.interval)
       }
     },
   },
