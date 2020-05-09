@@ -24,6 +24,11 @@ var updatevisible = function() {
   updatevisiblehook();
 };
 
+var animcontrol = function() {
+  animcontrolhook();
+};
+
+
 var makelineq = function(a, b) {
   if (a == 0) {
     eq = String(b);
@@ -60,6 +65,13 @@ let app = new Vue({
     func1: true,
     func2: false,
     errorMsg: '',
+    timeron: false,
+    timerobj: null,
+    dira: 0,
+    dirb: 0,
+    anima: 0,
+    animb: 0,
+    interval: 100,
   },
   computed: {
     // get1a: function () {
@@ -83,10 +95,10 @@ let app = new Vue({
   },
   methods: {
     f1: function(x) {
-      return this.func1a * x + this.func1b;
+      return Number(this.func1a) * x + Number(this.func1b);
     },
     f2: function(x) {
-      return this.func2a * x + this.func2b;
+      return Number(this.func2a) * x + Number(this.func2b);
     },
     clearErrorMsg: function () {
       this.errorMsg = '';
@@ -102,6 +114,69 @@ let app = new Vue({
       }
       this.errorMsg = msg;
     },
+    timermain: function (v,di,animf){
+      if ((v <= -10) && (di == -1)) {
+        di = 1;
+      } else if ((v >= 10) && (di == 1)) {
+        if (animf == 2) {
+          di = -1
+        } else {
+          v = -10.0-0.1;
+        }
+      }
+      v = Math.round((v + 0.1*di)*10)/10;
+      return [v,di,animf];
+    },
+    timercount: function () {
+      if (this.anima != 0) {
+        l = this.timermain(this.func1a, this.dira, this.anima);
+        console.log(l)
+        this.func1a = l[0];
+        this.dira = l[1];
+      }
+      if (this.animb != 0) {
+        l = this.timermain(this.func1b, this.dirb, this.animb);
+        this.func1b = l[0];
+        this.dirb = l[1];
+      }
+    },
+    animcontrolhook: function () {
+      let self=this
+      if ((this.anima == 0) && (this.animb == 0)) {
+        if (this.timeron) {
+          clearInterval(this.timerobj)
+        }
+        this.timerobj = null
+        this.timeron = false
+        this.dira = 0
+        this.dirb = 0        
+      } else {
+        if (this.anima != 0) {
+          if (this.dira == 0) {
+            this.dira = 1
+          }
+        } else {
+            this.dira = 0
+        }
+        if (this.animb != 0) {
+          if (this.dirb == 0) {
+            this.dirb = 1
+          }
+        } else {
+            this.dirb = 0
+        }
+        this.timerobj = setInterval(function() {self.timercount()}, this.interval)
+        this.timeron = true
+      }
+    },
+    modifyinterval: function () {
+      if (this.timeron) {
+        self=this
+        clearInterval(this.timerobj)
+        this.timerobj = setInterval(function() {self.timercount()}, this.interval)
+        console.log("interval ",this.interval)
+      }
+    },
   },
   watch: {
     func1a: updatefunction,
@@ -110,6 +185,9 @@ let app = new Vue({
     func2b: updatefunction,
     func1: updatevisible,
     func2: updatevisible,
+    anima: 'animcontrolhook',
+    animb: 'animcontrolhook',
+    interval: 'modifyinterval',
   },
   mounted: function() {
     f1 = brd.create('functiongraph', [this.f1], {strokeWidth:2});
@@ -121,14 +199,22 @@ let app = new Vue({
     }
 
     updatefunctionhook = function () {
-      f1.needsUpdate = true;
-      f2.needsUpdate = true;
-      f1.update().updateRenderer();
-      f2.update().updateRenderer();
+      if (!isNaN(app.func1a) && !isNaN(app.func1b)) {
+        f1.needsUpdate = true;
+        f1.update().updateRenderer();
+      }
+      if (!isNaN(app.func2a) && !isNaN(app.func2b)) {
+        f2.needsUpdate = true;
+        f2.update().updateRenderer();
+      }
       // brd.update()
     }
   }
 });
+
+
+
+
 
 updatevisible();
 brd.update();

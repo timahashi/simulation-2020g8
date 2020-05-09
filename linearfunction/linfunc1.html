@@ -5,7 +5,9 @@ Released under the MIT license
 
 https://opensource.org/licenses/mit-license.php
 -->
-<html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.7/jsxgraph.css" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.7/jsxgraphcore.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
@@ -15,7 +17,8 @@ https://opensource.org/licenses/mit-license.php
   <link rel="stylesheet" type="text/css" href="./linfunc1.css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-</html>
+  <title>1次関数</title>
+</head>
 <body>
   <div id="flex">
     <div id="jxgbox" class="jxgbox"></div>
@@ -38,7 +41,10 @@ https://opensource.org/licenses/mit-license.php
           1次関数1（青） {{ getfunc1equation }}
         </div>
         <div class="slider">
-          傾き a=<input class="ab" v-model="func1a" @input="clearErrorMsg" /><br>
+          傾き a=<input class="ab" v-model="func1a" @input="clearErrorMsg" />
+          <input type="radio" name="anim1" value="0" v-model="anima">OFF
+          <input type="radio" name="anim1" value="1" v-model="anima">片道
+          <input type="radio" name="anim1" value="2" v-model="anima">往復<br>
           <vue-slider
             ref="slider"
             v-model="func1a"
@@ -52,7 +58,10 @@ https://opensource.org/licenses/mit-license.php
           ></vue-slider>
         </div>
         <div class="slider">
-          切片 b=<input class="ab" v-model="func1b" @input="clearErrorMsg" /><br>
+          切片 b=<input class="ab" v-model="func1b" @input="clearErrorMsg" />
+          <input type="radio" name="anim2" value="0" v-model="animb">OFF
+          <input type="radio" name="anim2" value="1" v-model="animb">片道
+          <input type="radio" name="anim2" value="2" v-model="animb">往復<br>
           <vue-slider
             ref="slider"
             v-model="func1b"
@@ -102,6 +111,20 @@ https://opensource.org/licenses/mit-license.php
             :disabled="!func2"
           ></vue-slider>
         </div>
+        <div class="slider">
+            速さ {{interval}}<br>
+            <vue-slider
+              ref="slider"
+              v-model="interval"
+              :min="1" 
+              :max="500"
+              :interval="1"
+              style="display: inline-block; width: 100%;"
+              :process-style="{ backgroundColor: 'orange' }"
+              :tooltip-style="{ backgroundColor: 'orange', borderColor: 'orange' }"
+            ></vue-slider>
+  
+        </div>
 
 
       </div>
@@ -109,3 +132,4 @@ https://opensource.org/licenses/mit-license.php
   </div>
   <script src="./linfunc1.js"></script>
 </body>
+</html>
